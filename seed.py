@@ -5,20 +5,20 @@ from models import db, User
 db.drop_all()
 db.create_all()
 
-u1 = User(
-    username="messi10",
-    password="123456",
-    email="messi@fcb.es",
-    first_name="Lionel",
-    last_name="Messi"
+u1 = User.register(
+    "messi10",
+    "123456",
+    "messi@fcb.es",
+    "Lionel",
+    "Messi"
 )
 
-u2 = User(
-    username="luis9",
-    password="123456",
-    email="suarez@fcb.es",
-    first_name="Luis",
-    last_name="Suarez"
+u2 = User.register(
+    "luis9",
+    "123456",
+    "suarez@fcb.es",
+    "Luis",
+    "Suarez"
 )
 
 db.session.add_all([u1, u2])

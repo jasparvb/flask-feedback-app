@@ -47,5 +47,5 @@ class Cupcakes {
 }
 
 $(async function() {
-    new Cupcakes();
+    //new Cupcakes();
 });

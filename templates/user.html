@@ -10,21 +10,24 @@
     Email: {{ user.email }}<br>
     First Name: {{ user.first_name }}<br>
     Last Name: {{ user.last_name }}</p>
-    <h2>Feedback:</h2>
+    <form action="/users/{{ user.username }}/delete" method="POST">
+        <a href="/users/{{ user.username }}/feedback/add" class="btn btn-info">Add Feedback</a>
+        <a href="/logout" class="btn btn-warning">Logout</a>
+        <button class="btn btn-danger">Delete User</button>
+    </form>
+    <h2 class="mt-3">Feedback:</h2>
+    {% for feedback in user.feedback %}
     <div class="container">
-        {% for feedback in user.feedback %}
             <div class="card my-3">
                 <div class="card-body">
                 <h5 class="card-title">{{ feedback.title }}</h5>
                 <p class="card-text">{{ feedback.content }}</p>
-                <a href="/feedback/{{ feedback.id }}/feedback/update" class="card-link">Edit</a>
-                <a href="/feedback/{{ feedback.id }}/feedback/delete" class="card-link">Delete</a>
+                <form action="/feedback/{{ feedback.id }}/delete" method="POST">
+                    <a href="/feedback/{{ feedback.id }}/update" class="btn btn-outline-info btn-sm">Edit</a>
+                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </form>
                 </div>
             </div>
-        {% endfor %}
-        <form action="/users/{{ user.username }}/delete" method="POST">
-            <a href="/users/{{ user.username }}/feedback/add" class="btn btn-info">Add Feedback</a>
-            <button class="btn btn-danger">Delete User</button>
-        </form>
-    </div>
+        </div>
+    {% endfor %}
 {% endblock %}

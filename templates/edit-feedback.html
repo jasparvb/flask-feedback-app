@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Feedback{% endblock %}
+{% block content %}
+    <h1>Edit Feedback</h1>
+    {% for msg in get_flashed_messages() %}
+        <p class="message alert alert-success">{{ msg }}</p>
+    {% endfor %}
+    <form id="edit-feedback-form" method="POST" action="/feedback/{{ feedback.id }}/update">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{ field.label }}
+                {{ field }}
+
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+        {% endfor %}
+        <a href="/users/{{ feedback.username }}" class="btn btn-danger">Cancel</a>
+        <button class="btn btn-info">Save</button>
+    </form>
+{% endblock %}

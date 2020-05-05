@@ -24,7 +24,7 @@ class User(db.Model):
 
     last_name = db.Column(db.String(30), nullable=False)
 
-    feedback = db.relationship( 'Feedback', backref="user", cascade="delete")
+    feedback = db.relationship( 'Feedback', backref="user", cascade="all, delete")
   
     def __repr__(self):
         u = self

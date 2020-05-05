@@ -25,7 +25,7 @@ def home():
 @app.route("/users/<username>")
 def user_details(username):
     """Render user details page"""
-    if "user_username" not in session:
+    if "user_username" not in session or session["user_username"] != username:
         flash("You must log in to view that page")
         return redirect("/login")
 

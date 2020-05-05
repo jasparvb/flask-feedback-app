@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField, PasswordField
-from wtforms.validators import InputRequired, Optional, Email
+from wtforms import StringField, PasswordField
+from wtforms.validators import InputRequired, Email
 
 class AddUserForm(FlaskForm):
     """Form for registering a user."""

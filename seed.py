@@ -1,5 +1,5 @@
 from app import app
-from models import db, User
+from models import db, User, Feedback
 
 
 db.drop_all()
@@ -21,5 +21,16 @@ u2 = User.register(
     "Suarez"
 )
 
-db.session.add_all([u1, u2])
+f1 = Feedback(
+    title="Awesome Product",
+    content="These are the best cleats I've ever used. Adidas is the number one brand because it's German!",
+    username=u1.username
+)
+
+f2 = Feedback(
+    title="Lo Mejor",
+    content="No lo puedo creer, estas botinas son increibles. Calidad aleman",
+    username=u1.username
+)
+db.session.add_all([u1, u2, f1, f2])
 db.session.commit()

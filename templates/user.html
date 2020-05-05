@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %}Secret Page{% endblock %}
+{% block title %}User page{% endblock %}
 {% block content %}
     <h1>Details for: {{ user.username }} </h1>
     {% for msg in get_flashed_messages() %}
         <p class="message alert alert-success">{{ msg }}</p>
     {% endfor %}
-    <p>Username: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
+    <p>Username: {{ user.username }}<br>
+    Email: {{ user.email }}<br>
+    First Name: {{ user.first_name }}<br>
+    Last Name: {{ user.last_name }}</p>
+    <h2>Feedback:</h2>
+    <div class="container">
+        {% for feedback in user.feedback %}
+            <div class="card my-3">
+                <div class="card-body">
+                <h5 class="card-title">{{ feedback.title }}</h5>
+                <p class="card-text">{{ feedback.content }}</p>
+                <a href="/feedback/{{ feedback.id }}/feedback/update" class="card-link">Edit</a>
+                <a href="/feedback/{{ feedback.id }}/feedback/delete" class="card-link">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+        <form action="/users/{{ user.username }}/delete" method="POST">
+            <a href="/users/{{ user.username }}/feedback/add" class="btn btn-info">Add Feedback</a>
+            <button class="btn btn-danger">Delete User</button>
+        </form>
+    </div>
 {% endblock %}
